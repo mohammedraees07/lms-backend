@@ -2,14 +2,16 @@ import express from "express";
 import 'dotenv/config'
 import connectToDB from "./config/db.js";
 import authRoute from "./routes/auth.routes.js"
+import config from "./config/config.js"
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = config.PORT|| 3000;
 
 app.use(express.json());
 
 
 app.use("/api/auth",authRoute)
+
 
 const startServer = async() => {
   try {

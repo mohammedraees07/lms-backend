@@ -1,6 +1,6 @@
 const emailRegex = /^\S+@\S+\.\S+$/;
 
-const requestValidator = (req, res, next) => {
+const registerValidator = (req, res, next) => {
 
   const { username, email, password, accountType } = req.body;
 
@@ -35,4 +35,4 @@ const requestValidator = (req, res, next) => {
   
 };
 
-export default requestValidator;
+export default registerValidator;
