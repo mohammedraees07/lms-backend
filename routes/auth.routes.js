@@ -1,7 +1,7 @@
 import express from "express"
-import registerValidator from "../middlewares/registerValidator.middleware.js"
+import registerValidator from "../middlewares/validator/registerValidator.middleware.js"
 import {loginUser, registerUser}  from "../controllers/auth.controller.js"
-import loginValidator from "../middlewares/loginvalidator.middleware.js"
+import loginValidator from "../middlewares/validator/loginValidator.middleware.js"
 
 
 
