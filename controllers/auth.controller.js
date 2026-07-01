@@ -84,7 +84,7 @@ export const loginUser = async (req, res) => {
         username: user.username,
         role: user.role,
       },
-      config.jwtSecret,
+      config.JWT_SECRET_KEY,
       {
         expiresIn: "15m",
       },

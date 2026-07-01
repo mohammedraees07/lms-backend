@@ -9,7 +9,6 @@ const loginValidator = (req,res,next)=>{
     }else if (!emailRegex.test(email)){
         errors.email = "Please enter a valid email address"
     }
-
     if(!password){
         errors.password = "Password is required"
     }else if(password.length < 8){

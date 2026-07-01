@@ -1,6 +1,6 @@
 import mongoose,{Schema} from "mongoose";
 
-const lessonSchema = new mongoose.Schema({
+const lessonSchema = new Schema({
     order:{
         type: Number,
         required: true,
@@ -16,7 +16,7 @@ const lessonSchema = new mongoose.Schema({
         trim : true
     },
     video:{
-        videoURL:{
+        url:{
             type : String,
             required : true,
         },

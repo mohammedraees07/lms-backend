@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import config from "../config/config.js";
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -13,7 +14,7 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
-    const decodedInfo = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const decodedInfo = jwt.verify(token, config.JWT_SECRET_KEY);
 
     req.userInfo = decodedInfo;
 

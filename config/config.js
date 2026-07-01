@@ -1,32 +1,32 @@
-import 'dotenv/config'
+import "dotenv/config";
 
-
-const MONGO_URI = process.env.MONGO_URI;
-const PORT = process.env.PORT
-const jwtSecret = process.env.JWT_SECRET_KEY
+const requiredEnvs = [
+  "MONGO_URI",
+  "PORT",
+  "JWT_SECRET_KEY",
+  "CLOUDINARY_CLOUD_NAME",
+  "CLOUDINARY_API_KEY",
+  "CLOUDINARY_API_SECRET",
+];
 
 // Application configuration validation
+//Fail Fast principle. (it breaks bfr server starts)
 
-if(!PORT){
-    throw new Error("PORT is missing! ");
-    
-} //Fail Fast principle. (it breaks bfr server starts)
-
-if(!MONGO_URI){
-    throw new Error("MONGO_URI is missing!")
-    
+for (const key of requiredEnvs) {
+  if (!process.env[key]) {
+    throw new Error(
+      `Configuration Error: Missing environment variable for ${key}`,
+    );
+  }
 }
 
+const config = {
+  MONGO_URI: process.env.MONGO_URI,
+  PORT: process.env.PORT,
+  JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+};
 
-if(!jwtSecret){
-    throw new Error("Secret key is missing");
-    
-}
-    
-const config =  {
-    MONGO_URI,
-    PORT,
-    jwtSecret
-}
-
-export default config
+export default config;

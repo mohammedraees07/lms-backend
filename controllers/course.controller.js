@@ -5,22 +5,12 @@ export const createCourse = async (req, res) => {
   try {
     const { title, description } = req.body;
     const author = req.userInfo.userId;
-
-    const errors = {};
-
-    if (!title) {
-      errors.title = "Title is required";
-    }
-     if (Object.keys(errors).length > 0) {
-      return res.status(400).json({ errors });
-    }
+ 
     const newCourse = await Course.create({
       title,
       description,
       author,
     });
-
-   
 
     return res.status(201).json({
       success: true,

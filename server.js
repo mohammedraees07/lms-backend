@@ -1,9 +1,9 @@
+import config from "./config/config.js"
 import express from "express";
-import 'dotenv/config'
 import connectToDB from "./config/db.js";
 import authRoute from "./routes/auth.routes.js"
 import courseRoute from "./routes/course.routes.js"
-import config from "./config/config.js"
+import lessonRoute from "./routes/lesson.routes.js"
 
 const app = express();
 const PORT = config.PORT|| 3000;
@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/auth",authRoute)
 app.use("/api/course",courseRoute)
+app.use("/api/lesson",lessonRoute)
 
 
 const startServer = async() => {
