@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Course from "../models/Course.js";
 
 export const createCourse = async (req, res) => {

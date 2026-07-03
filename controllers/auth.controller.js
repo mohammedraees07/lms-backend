@@ -52,7 +52,7 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email }).lean();
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({
@@ -80,7 +80,7 @@ export const loginUser = async (req, res) => {
 
     const accessToken = jwt.sign(
       {
-        userId: user._id,
+        userId: user._id.toString(),
         username: user.username,
         role: user.role,
       },
