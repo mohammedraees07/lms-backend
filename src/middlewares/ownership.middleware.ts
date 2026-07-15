@@ -32,6 +32,7 @@ export const checkCourseOwnership = (req: OwnerShipRequest,res: Response,next: N
 use zod for : run time which we know but with this many thing got clear like when we interact with client data and validate it or if we talk with external api's we use zod to validate as it happens during run time
 
 use Pure Typescript : when we do internal checks like when we interact with db n all then create a contract and use it for validation/type checks
+Use TypeScript for everything inside application where you control the data it make sure variable/data and its type is consistent across application without any typo
 
 Well if we look : (everything follows defense in depth)
 

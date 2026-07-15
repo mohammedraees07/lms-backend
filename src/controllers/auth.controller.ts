@@ -3,6 +3,7 @@ import User, {type IUser} from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import config from "../config/config.js"
+import { AppError } from "../middlewares/error.middleware.js";
 
 type RegisterInput = {
   username : string
@@ -25,12 +26,7 @@ export const registerUser = async (req: Request<{},{},RegisterInput>, res: Respo
     }).lean();
 
     if (existingUser) {
-      res.status(409).json({
-        success: false,
-        message:
-          "User already exists with this username or email. Please try different username or email",
-      });
-      return; 
+      throw new AppError("User already exists with this username or email. Please try different username or email",409)
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -77,27 +73,19 @@ export const loginUser = async (req: Request<{},{},LoginInput>, res: Response, n
     const user = await User.findOne({ email });
 
     if (!user) {
-      res.status(404).json({
-        success: false,
-        message: "User not found!",
-      });
-      return;
+      throw new AppError("User not found!",404);
     }
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
 
     if (!isPasswordMatch) {
-      res.status(401).json({
-        success: false,
-        message: "Incorrect credentials! Please enter the valid credentials",
-      });
-      return;
+      throw new AppError("Incorrect credentials! Please enter the valid credentials",401)
     }
 
     if(user.role === "pending_teacher"){
       res.status(403).json({
         success : false,
-        status : 'pending_teacher',
+        code : "pending_teacher",
         message : "Teacher account is pending verification."
       })
       return;
